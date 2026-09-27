@@ -229,7 +229,7 @@
 
     /* ══════ CIBLES ══════ */
     #cibles { padding-bottom: 0; }
-    .cibles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px; }
+    .cibles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
     .cible-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
       padding: 24px 26px; transition: all 0.3s;
@@ -255,11 +255,14 @@
       border-radius: 20px; padding: 32px; text-align: center;
     }
     .profile-avatar {
-      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--orange), var(--gold));
+      width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 16px;
+      overflow: hidden; padding: 0;
+      box-shadow: 0 0 0 4px rgba(249,115,22,0.2), 0 8px 24px rgba(0,0,0,0.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 32px; font-weight: 900; color: white;
-      box-shadow: 0 0 0 4px rgba(249,115,22,0.15);
+      background: var(--surface2);
+    }
+    .profile-avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .profile-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
     .profile-role { font-size: 13px; color: var(--orange-light); font-weight: 600; margin-bottom: 16px; }
@@ -278,13 +281,13 @@
     .xp-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
     .xp-check { color: var(--orange); font-size: 16px; flex-shrink: 0; }
 
-    /* ══════ DIFFÉRENCIATEUR : L'ATOUT IA & AUTOMATISATION ══════ */
+    /* ══════ NOTRE DIFFÉRENCE : AUTOMATISATION & IA EN OPTION ══════ */
     #differentiation { padding-top: 30px; }
     .diff-wrapper {
-      background: radial-gradient(circle at 50% 0%, rgba(249,115,22,0.1) 0%, rgba(13,19,33,0) 70%), var(--surface);
+      background: radial-gradient(circle at 50% 0%, rgba(249,115,22,0.09) 0%, rgba(13,19,33,0) 70%), var(--surface);
       border: 1px solid var(--border);
       border-radius: 28px;
-      padding: 60px 48px;
+      padding: 56px 44px;
       position: relative;
       overflow: hidden;
     }
@@ -294,84 +297,95 @@
       top: 0; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg, transparent, var(--orange), transparent);
     }
-    .diff-header { text-align: center; max-width: 760px; margin: 0 auto 48px; }
-    .diff-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-    .diff-card {
+    .diff-header { text-align: center; max-width: 760px; margin: 0 auto 36px; }
+    .diff-single-box {
       background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px 28px;
-      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      border-radius: 24px;
+      padding: 36px 40px;
       position: relative;
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
     }
-    .diff-card:hover {
+    .diff-single-box:hover {
       border-color: rgba(249,115,22,0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+      transform: translateY(-2px);
     }
-    .diff-card-top {
+    .diff-single-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
-    .diff-icon {
-      width: 48px; height: 48px; border-radius: 14px;
-      background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
+    .diff-single-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .diff-badge {
-      font-size: 11px; font-weight: 700; color: var(--orange-light);
-      background: var(--orange-dim); padding: 4px 10px; border-radius: 100px;
-      border: 1px solid rgba(249,115,22,0.2);
+    .diff-single-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange-light);
+      background: var(--orange-dim);
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(249,115,22,0.25);
     }
-    .diff-title {
-      font-size: 17px; font-weight: 800; color: var(--text);
+    .diff-single-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 24px;
     }
-    .diff-text {
-      font-size: 13px; line-height: 1.7; color: var(--muted);
+    .diff-single-text strong {
+      color: var(--text);
     }
-    .diff-vs {
-      background: rgba(0,0,0,0.28);
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-top: auto;
-      font-size: 12px;
-      line-height: 1.5;
+    .diff-features-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .diff-feature {
+      background: rgba(0,0,0,0.22);
+      border-radius: 14px;
+      padding: 16px 18px;
       border-left: 3px solid var(--orange);
     }
-    .diff-vs-title {
-      font-size: 11px;
+    .diff-feature-title {
+      font-size: 13px;
       font-weight: 750;
-      color: var(--orange-light);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .diff-feature-desc {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
     }
     .diff-conclusion {
-      margin-top: 40px;
+      margin-top: 32px;
       background: rgba(249,115,22,0.06);
       border: 1px dashed rgba(249,115,22,0.3);
       border-radius: 18px;
-      padding: 24px 30px;
+      padding: 20px 26px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .diff-conclusion-quote {
-      font-size: 15px; font-weight: 700; color: var(--text);
+      font-size: 14px; font-weight: 700; color: var(--text);
     }
     .diff-conclusion-sub {
-      font-size: 13px; color: var(--muted); max-width: 680px; line-height: 1.6;
+      font-size: 12px; color: var(--muted); max-width: 680px; line-height: 1.6;
     }
 
     /* ══════ GARANTIE ══════ */
@@ -526,8 +540,9 @@
       .profile-card { flex: none; width: 100%; }
 
       /* Différenciateur */
-      .diff-wrapper { padding: 40px 20px; }
-      .diff-grid { grid-template-columns: 1fr; gap: 16px; }
+      .diff-wrapper { padding: 36px 20px; }
+      .diff-single-box { padding: 24px 20px; }
+      .diff-features-row { grid-template-columns: 1fr; gap: 12px; }
 
       /* Garantie */
       .garantie-wrapper { padding: 60px 20px; }
@@ -547,7 +562,7 @@
       .infra-card { padding: 20px; }
       .cible-card { padding: 18px 20px; }
       .profile-card { padding: 24px; }
-      .diff-card { padding: 22px 18px; }
+      .diff-single-box { padding: 20px 16px; }
     }
   </style>
 </head>
@@ -566,7 +581,7 @@
     <a class="topbar-link" href="#infras">Missions</a>
     <a class="topbar-link" href="#cibles">Cibles</a>
     <a class="topbar-link" href="#profile">Profil</a>
-    <a class="topbar-link" href="#differentiation">L'Atout IA & Auto</a>
+    <a class="topbar-link" href="#differentiation">Notre différence</a>
     <a class="topbar-link" href="#garantie">Offre</a>
   </div>
   <a class="topbar-cta" href="https://calendly.com/sonia-monassistant-ia/appel-de-decouverte" target="_blank" rel="noopener noreferrer">📅 Prendre rendez-vous</a>
@@ -580,7 +595,7 @@
   <a href="#infras" class="menu-link">Missions</a>
   <a href="#cibles" class="menu-link">Cibles</a>
   <a href="#profile" class="menu-link">Profil</a>
-  <a href="#differentiation" class="menu-link">L'Atout IA & Auto</a>
+  <a href="#differentiation" class="menu-link">Notre différence</a>
   <a href="#garantie" class="menu-link">Offre</a>
   <a href="https://calendly.com/sonia-monassistant-ia/appel-de-decouverte" target="_blank" class="menu-cta">📅 Prendre rendez-vous</a>
 </div>
@@ -592,7 +607,7 @@
   <div class="hero-badge anim">🏗️ 3 ans d'expérience · Spécialiste BTP & Maîtrise d'œuvre</div>
   <h1 class="anim d1">
     Votre bras droit administratif<br/>
-    <span class="accent">augmenté par l'automatisation.</span>
+    <span class="accent">technique & gestion de chantier.</span>
   </h1>
   <p class="hero-sub anim d2">
     Zéro facture oubliée. Zéro dossier bloqué. Zéro heure perdue sur l'administratif technique — pour que votre chantier avance, pas votre pile de dossiers en retard.
@@ -612,11 +627,11 @@
     </div>
     <div class="stat">
       <div class="stat-val" data-target="4" data-suffix="">0</div>
-      <div class="stat-label">Infrastructures gérées</div>
+      <div class="stat-label">Missions clés</div>
     </div>
     <div class="stat">
       <div class="stat-val" data-target="100" data-suffix="%">0</div>
-      <div class="stat-label">Automatisé</div>
+      <div class="stat-label">Dédié BTP</div>
     </div>
   </div>
 </section>
@@ -624,7 +639,7 @@
 <!-- ══════ PROBLÈME ══════ -->
 <section id="problem">
   <div class="problem-left reveal-left">
-    <div class="section-tag">📋 Le constat</div>
+    <div class="section-tag">📋 Notre constat</div>
     <h2>L'administratif technique vous vole<br/><em>votre temps de chantier</em></h2>
     <p style="color:var(--muted);font-size:14px;line-height:1.7;">
       En tant que directeur de travaux, maître d'œuvre ou dirigeant de PME BTP, votre valeur est sur le terrain. Pas derrière un écran à relancer des sous-traitants ou vérifier des situations de travaux.
@@ -657,8 +672,8 @@
       <div style="margin-top:14px;font-size:11px;color:var(--orange-light);font-weight:700;">— Sokhna · Sonia, Gérante Assistansia</div>
     </div>
     <div class="good-news">
-      <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:#34d399;">✅ La bonne nouvelle</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Tout ce suivi peut être délégué à une assistante spécialisée BTP, appuyée par des automatisations (Make, n8n, Airtable, Notion) — sans supervision de votre part.</div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:#34d399;">✅ La solution</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Tout ce suivi peut être délégué à une assistante spécialisée BTP qui maîtrise parfaitement vos contraintes métier — sans aucune charge de formation de votre part.</div>
     </div>
     <div class="ultimatum-box">
       <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:#f87171;">⚡ L'alternative</div>
@@ -667,14 +682,14 @@
   </div>
 </section>
 
-<!-- ══════ INFRASTRUCTURES ══════ -->
+<!-- ══════ MISSIONS ══════ -->
 <section id="infras" class="full">
   <div class="infras-wrapper">
     <div class="section-inner infra-header">
-      <div class="section-tag" style="justify-content:center;">⚙️ La stratégie</div>
-      <h2 style="text-align:center;">4 infrastructures opérationnelles<br/><em>déployées pour vous</em></h2>
+      <div class="section-tag" style="justify-content:center;">⚙️ Nos missions</div>
+      <h2 style="text-align:center;">4 missions opérationnelles<br/><em>prises en charge pour vous</em></h2>
       <p style="text-align:center;color:var(--muted);font-size:14px;max-width:580px;margin:16px auto 0;line-height:1.7;">
-        Une prise en charge complète appuyée par des automatisations (Make, n8n, Airtable, Notion) qui éliminent les tâches répétitives et sécurisent les délais.
+        Une prise en charge administrative et technique complète et rigoureuse pour sécuriser vos délais et libérer votre temps de chantier.
       </p>
     </div>
     <div class="infras-grid">
@@ -682,20 +697,20 @@
       <!-- Financier -->
       <div class="infra-card orange reveal delay-1">
         <div class="infra-icon orange">💰</div>
-        <div class="infra-label orange">Infrastructure 01</div>
+        <div class="infra-label orange">Mission 01</div>
         <div class="infra-title">Suivi financier & trésorerie</div>
         <div class="infra-items">
           <div class="infra-item">
             <div class="infra-dot orange"></div>
-            <div>Traiter vos <strong>certificats de paiement et situations de travaux</strong> : tableau de bord automatisé, actualisé en continu. <span class="auto-badge orange">⚡ Airtable</span></div>
+            <div>Traiter vos <strong>certificats de paiement et situations de travaux</strong> : centralisation rigoureuse et mise à jour continue dans votre tableau de bord.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot orange"></div>
-            <div>Relancer vos <strong>factures impayées</strong> : système de relance automatisé (Make/n8n) qui déclenche les rappels aux bons moments. <span class="auto-badge orange">⚡ Make / n8n</span></div>
+            <div>Relancer vos <strong>factures impayées</strong> : suivi strict des échéances et relances régulières jusqu'au règlement effectif.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot orange"></div>
-            <div>Suivre vos <strong>indicateurs de projet</strong> : tableaux Airtable/Notion avec vision claire de l'avancement, sans ressaisie manuelle. <span class="auto-badge orange">⚡ Notion</span></div>
+            <div>Suivre vos <strong>indicateurs de projet</strong> : vision claire de la trésorerie et de l'avancement financier sans oubli.</div>
           </div>
         </div>
       </div>
@@ -703,20 +718,20 @@
       <!-- Contractuel -->
       <div class="infra-card blue reveal delay-2">
         <div class="infra-icon blue">📋</div>
-        <div class="infra-label blue">Infrastructure 02</div>
+        <div class="infra-label blue">Mission 02</div>
         <div class="infra-title">Contractuel & documentaire</div>
         <div class="infra-items">
           <div class="infra-item">
             <div class="infra-dot blue"></div>
-            <div>Rédiger et diffuser vos <strong>Ordres de Service</strong> : intégrés directement dans votre suivi financier, avec traçabilité automatique. <span class="auto-badge blue">⚡ Traçabilité auto</span></div>
+            <div>Rédiger et diffuser vos <strong>Ordres de Service</strong> : traçabilité complète de l'émission à l'accusé de réception.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot blue"></div>
-            <div>Gérer les <strong>agréments de sous-traitants et NDA</strong> : process automatisé de relance des pièces manquantes. <span class="auto-badge blue">⚡ Relances auto</span></div>
+            <div>Gérer les <strong>agréments de sous-traitants et NDA</strong> : collecte des pièces obligatoires (attestations URSSAF, assurances décennales) et relances actives.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot blue"></div>
-            <div>Mettre à jour vos <strong>pièces contractuelles (CCAG, marchés)</strong> : classement structuré et accessible à tout moment.</div>
+            <div>Mettre à jour vos <strong>pièces contractuelles (CCAG, marchés)</strong> : classement méthodique et archivage accessible à tout moment.</div>
           </div>
         </div>
       </div>
@@ -724,20 +739,20 @@
       <!-- Appels d'offres -->
       <div class="infra-card green reveal delay-3">
         <div class="infra-icon green">📊</div>
-        <div class="infra-label green">Infrastructure 03</div>
+        <div class="infra-label green">Mission 03</div>
         <div class="infra-title">Analyse des offres & DCE</div>
         <div class="infra-items">
           <div class="infra-item">
             <div class="infra-dot green"></div>
-            <div>Analyser vos <strong>DCE et comparer les offres entreprises</strong> : tableaux comparatifs DPGF construits avec modèles automatisés, gain de temps sur la saisie. <span class="auto-badge green">⚡ Modèles auto</span></div>
+            <div>Analyser vos <strong>DCE et comparer les offres entreprises</strong> : élaboration de tableaux comparatifs DPGF clairs pour éclairer vos arbitrages.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot green"></div>
-            <div>Relancer les <strong>entreprises consultées</strong> : système de relance automatique jusqu'à réception des dossiers complets. <span class="auto-badge green">⚡ Make / n8n</span></div>
+            <div>Relancer les <strong>entreprises consultées</strong> : suivi rigoureux jusqu'à réception des dossiers complets dans les délais.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot green"></div>
-            <div>Suivre le <strong>VISA de la maîtrise d'œuvre</strong> : alertes automatiques sur les délais de retour. <span class="auto-badge green">⚡ Alertes auto</span></div>
+            <div>Suivre le <strong>VISA de la maîtrise d'œuvre</strong> : contrôle strict du calendrier de validation des plans et pièces techniques.</div>
           </div>
         </div>
       </div>
@@ -745,12 +760,12 @@
       <!-- Urbanisme -->
       <div class="infra-card gold reveal delay-4">
         <div class="infra-icon gold">🏛️</div>
-        <div class="infra-label gold">Infrastructure 04</div>
+        <div class="infra-label gold">Mission 04</div>
         <div class="infra-title">Urbanisme & autorisations</div>
         <div class="infra-items">
           <div class="infra-item">
             <div class="infra-dot gold"></div>
-            <div>Constituer et déposer vos <strong>dossiers de permis de construire (PC)</strong> : checklist et suivi structuré pour éviter tout oubli de pièce. <span class="auto-badge gold">⚡ Checklist auto</span></div>
+            <div>Constituer et déposer vos <strong>dossiers de permis de construire (PC)</strong> : vérification rigoureuse des pièces pour éviter tout rejet.</div>
           </div>
           <div class="infra-item">
             <div class="infra-dot gold"></div>
@@ -758,7 +773,7 @@
           </div>
           <div class="infra-item">
             <div class="infra-dot gold"></div>
-            <div>Suivi des <strong>pièces administratives obligatoires</strong> : tableau de bord centralisé avec alertes sur les délais d'instruction. <span class="auto-badge gold">⚡ Alertes auto</span></div>
+            <div>Suivi des <strong>pièces administratives obligatoires</strong> : veille continue sur les délais d'instruction et relance des services instructeurs.</div>
           </div>
         </div>
       </div>
@@ -769,10 +784,10 @@
 
 <!-- ══════ CIBLES ══════ -->
 <section id="cibles">
-  <div class="section-tag">🎯 À qui je m'adresse</div>
+  <div class="section-tag">🎯 Nos cibles</div>
   <h2>Je connais votre métier,<br/><em>vos contraintes aussi.</em></h2>
   <p style="color:var(--muted);font-size:14px;max-width:560px;line-height:1.7;">
-    Quatre profils précis, pour lesquels chaque heure gagnée sur l'administratif se transforme directement en chiffre d'affaires ou en qualité de vie retrouvée.
+    Trois profils précis, pour lesquels chaque heure gagnée sur l'administratif se transforme directement en chiffre d'affaires ou en sérénité retrouvée.
   </p>
   <div class="cibles-grid">
 
@@ -784,7 +799,7 @@
       <div class="cible-profils">Électriciens · Plombiers · Menuisiers · Maçons · Couvreurs · Peintres · Plaquistes</div>
       <div class="cible-args">
         <div class="cible-arg">Retrouvez vos week-ends et votre vie de famille — fini la paperasse le dimanche soir.</div>
-        <div class="cible-arg">Ne perdez plus aucun client : vos devis sont rédigés et relancés sous 24h/48h.</div>
+        <div class="cible-arg">Ne perdez plus aucun client : vos devis et relances sont traités rapidement sans délai.</div>
         <div class="cible-arg">Gestion administrative à la carte, sans engagement ni charges salariales.</div>
       </div>
     </div>
@@ -792,7 +807,7 @@
     <div class="cible-card reveal delay-2">
       <div class="cible-header">
         <div class="cible-num">2</div>
-        <div class="cible-name">PME du bâtiment (3 à 15 salariés)</div>
+        <div class="cible-name">PME / PE du bâtiment</div>
       </div>
       <div class="cible-profils">Maçonnerie générale · Rénovation · CVC · Second œuvre · Entreprises générales</div>
       <div class="cible-args">
@@ -815,26 +830,15 @@
       </div>
     </div>
 
-    <div class="cible-card reveal delay-4">
-      <div class="cible-header">
-        <div class="cible-num">4</div>
-        <div class="cible-name">Apporteurs d'affaires & courtiers en travaux</div>
-      </div>
-      <div class="cible-profils">Courtiers en travaux · Plateformes BTP · Intermédiaires particuliers / professionnels</div>
-      <div class="cible-args">
-        <div class="cible-arg">Gestion fluide de la relation client et qualification des demandes entrantes.</div>
-        <div class="cible-arg">Centralisation et suivi des plannings des artisans partenaires.</div>
-        <div class="cible-arg">Relances automatiques jusqu'à réception des dossiers complets de chaque artisan.</div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- ══════ PROFIL ══════ -->
 <section id="profile">
   <div class="profile-card reveal-left">
-    <div class="profile-avatar">S</div>
+    <div class="profile-avatar">
+      <img src="sonia.png" alt="Sokhna · Sonia - Assistante BTP" />
+    </div>
     <div class="profile-name">Sokhna · Sonia</div>
     <div class="profile-role">Gérante Assistansia · Assistante Technique BTP</div>
     <hr class="profile-divider" />
@@ -847,8 +851,8 @@
       <span class="profile-stat-val">Admin, Finance & Marchés</span>
     </div>
     <div class="profile-stat">
-      <span class="profile-stat-label">Le + Différenciateur</span>
-      <span class="profile-stat-val">Automatisation & IA</span>
+      <span class="profile-stat-label">Notre différence</span>
+      <span class="profile-stat-val">Automatisation & IA (option)</span>
     </div>
     <div class="profile-stat">
       <span class="profile-stat-label">Format</span>
@@ -856,11 +860,11 @@
     </div>
     <div class="profile-stat">
       <span class="profile-stat-label">Prise en main</span>
-      <span class="profile-stat-val">Sous 48h</span>
+      <span class="profile-stat-val">Opérationnelle</span>
     </div>
     <div class="profile-stat">
       <span class="profile-stat-label">Engagement</span>
-      <span class="profile-stat-val">1er mois test sans risque</span>
+      <span class="profile-stat-val">1er mois sans risque</span>
     </div>
     <hr class="profile-divider" />
     <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Compétences BTP & Outils</div>
@@ -868,116 +872,75 @@
       <span class="tool-chip">CCAG / Marchés</span>
       <span class="tool-chip">Situations travaux</span>
       <span class="tool-chip">DPGF / DCE</span>
+      <span class="tool-chip">Suivi sous-traitants</span>
       <span class="tool-chip">Make</span>
       <span class="tool-chip">n8n</span>
       <span class="tool-chip">Airtable</span>
       <span class="tool-chip">Notion</span>
-      <span class="tool-chip">IA Appliquée</span>
     </div>
   </div>
   <div class="profile-right reveal-right">
-    <div class="section-tag">👤 Qui je suis</div>
+    <div class="section-tag">👤 Qui suis-je</div>
     <h2>Je ne découvre pas<br/>votre métier, <em>je le connais.</em></h2>
     <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:24px;">
-      J'ai géré le suivi administratif et financier sur des opérations similaires aux vôtres. Forte de <strong>3 ans d'expérience terrain et administrative dans le BTP</strong>, je connais la réalité des chantiers : les urgences de trésorerie, les relances délicates et les exigences réglementaires. Je suis opérationnelle sous 48h — sans aucune période de formation à votre charge.
+      J'ai géré le suivi administratif et financier sur des opérations similaires aux vôtres. Forte de <strong>3 ans d'expérience terrain et administrative dans le BTP</strong>, je connais la réalité des chantiers : les urgences de trésorerie, les relances délicates et les exigences réglementaires. Je suis immédiatement opérationnelle — sans aucune période de formation à votre charge.
     </p>
     <div class="xp-list">
       <div class="xp-item"><span class="xp-check">✓</span> <strong>3 ans d'expérience concrète</strong> en gestion de projet BTP et suivi administratif de chantier</div>
       <div class="xp-item"><span class="xp-check">✓</span> <strong>Maîtrise des procédures chantier :</strong> OS, situations de travaux, certificats de paiement, DGD</div>
       <div class="xp-item"><span class="xp-check">✓</span> <strong>Connaissance des marchés :</strong> CCAG travaux, DPGF, DCE, conformité et agréments sous-traitants</div>
-      <div class="xp-item"><span class="xp-check">✓</span> <strong>Le bonus productivité :</strong> processus automatisés (Make, n8n, Airtable) pour zéro ressaisie et zéro retard</div>
       <div class="xp-item"><span class="xp-check">✓</span> <strong>Sens du relationnel terrain :</strong> échanges fluides et fermes avec sous-traitants, MOE et maîtres d'ouvrage</div>
       <div class="xp-item"><span class="xp-check">✓</span> <strong>Rigueur et discrétion absolues</strong> sur l'ensemble de vos dossiers contractuels et financiers</div>
+      <div class="xp-item"><span class="xp-check">✓</span> <strong>Disponible et opérationnelle :</strong> intégration directe à vos dossiers sans apprentissage à prévoir</div>
     </div>
   </div>
 </section>
 
-<!-- ══════ LE + DIFFÉRENCIATEUR : AUTOMATISATION & IA ══════ -->
+<!-- ══════ NOTRE DIFFÉRENCE : AUTOMATISATION & IA EN OPTION ══════ -->
 <section id="differentiation" class="full">
   <div class="diff-wrapper">
     <div class="diff-header reveal">
-      <div class="section-tag" style="justify-content:center;">💡 Le + qui fait la différence</div>
-      <h2 style="margin-top:12px;">Une assistante BTP de métier,<br/><em>la puissance de l'automatisation & de l'IA en plus.</em></h2>
+      <div class="section-tag" style="justify-content:center;">💡 Notre différence</div>
+      <h2 style="margin-top:12px;">Une assistante BTP de métier,<br/><em>avec l'automatisation & l'IA en option selon vos besoins.</em></h2>
       <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-top:16px;">
-        Ce qui me différencie d'une assistante classique ? Je ne vous facture pas des heures passées à faire du copier-coller ou des relances manuelles une à une. J'allie ma <strong>connaissance réelle du terrain BTP</strong> à des <strong>systèmes automatisés (Make, n8n)</strong> et des <strong>outils IA</strong> pour une réactivité et une fiabilité décuplées.
+        La priorité reste l'accompagnement humain et la rigueur de terrain. Les automatisations et les outils d'IA ne sont pas imposés : ils constituent une boîte à outils à la carte, activable si vos volumes de travail ou vos souhaits d'optimisation le demandent.
       </p>
     </div>
 
-    <div class="diff-grid">
-
-      <!-- Carte 1 -->
-      <div class="diff-card reveal delay-1">
-        <div class="diff-card-top">
-          <div class="diff-icon">⚡</div>
-          <span class="diff-badge">Bases connectées</span>
+    <!-- Bloc unique résumé -->
+    <div class="diff-single-box reveal delay-1">
+      <div class="diff-single-header">
+        <div class="diff-single-title">
+          <span>⚡</span> L'humain et le terrain d'abord, la technologie à la carte
         </div>
-        <div class="diff-title">Zéro ressaisie sur vos situations & certificats</div>
-        <div class="diff-text">
-          Vos situations de travaux, certificats de paiement et factures sous-traitants sont connectés en continu via des tableaux de bord <strong>Airtable & Notion</strong>. Chaque chiffre est tracé, actualisé en temps réel et consultable immédiatement.
+        <span class="diff-single-badge">Option selon vos besoins</span>
+      </div>
+      <div class="diff-single-text">
+        Mon rôle principal est d'être votre <strong>bras droit administratif et technique BTP</strong> au quotidien : je m'intègre naturellement à vos habitudes, à vos documents existants et à votre façon de travailler (fichiers Excel, boîtes mail, logiciels métiers). Si vos volumes le nécessitent ou si vous souhaitez moderniser vos processus, je peux déployer des <strong>automatisations légères et sur-mesure (Make, n8n, Airtable, Notion, IA)</strong> pour éliminer les ressaisies manuelles, fiabiliser les relances et accélérer la mise en forme de vos documents.
+      </div>
+      <div class="diff-features-row">
+        <div class="diff-feature">
+          <div class="diff-feature-title">1. Adaptation totale</div>
+          <div class="diff-feature-desc">Je travaille avec vos outils actuels sans rien bouleverser à votre organisation quotidienne.</div>
         </div>
-        <div class="diff-vs">
-          <div class="diff-vs-title">Ce que ça change pour vous</div>
-          Fini les tableurs Excel dispersés, les doublons et les formules cassées qui fragilisent votre trésorerie de chantier.
+        <div class="diff-feature">
+          <div class="diff-feature-title">2. Accélérateur à la demande</div>
+          <div class="diff-feature-desc">Si vous le désirez : mise en place de relances d'impayés, suivi sous-traitants et tableaux connectés.</div>
+        </div>
+        <div class="diff-feature">
+          <div class="diff-feature-title">3. Gain de temps & rigueur</div>
+          <div class="diff-feature-desc">Une frappe de compte-rendu accélérée et une gestion documentaire fluide pour sécuriser vos chantiers.</div>
         </div>
       </div>
-
-      <!-- Carte 2 -->
-      <div class="diff-card reveal delay-2">
-        <div class="diff-card-top">
-          <div class="diff-icon">🤖</div>
-          <span class="diff-badge">Make · n8n</span>
-        </div>
-        <div class="diff-title">Relances automatiques programmées & sans faille</div>
-        <div class="diff-text">
-          Déploiement de scénarios <strong>Make & n8n</strong> pour déclencher automatiquement les relances d'impayés, les demandes d'attestations URSSAF / agréments de sous-traitance et la confirmation de signature des OS, aux dates clés.
-        </div>
-        <div class="diff-vs">
-          <div class="diff-vs-title">Ce que ça change pour vous</div>
-          Vos factures rentrent plus vite et vos sous-traitants sont conformes à 100% avant le démarrage des travaux, sans stress.
-        </div>
-      </div>
-
-      <!-- Carte 3 -->
-      <div class="diff-card reveal delay-3">
-        <div class="diff-card-top">
-          <div class="diff-icon">🧠</div>
-          <span class="diff-badge">IA Appliquée</span>
-        </div>
-        <div class="diff-title">Comptes-rendus & analyse DCE accélérés par l'IA</div>
-        <div class="diff-text">
-          L'intelligence artificielle me sert de multiplicateur de productivité : tri et synthèse rapide de volumineux dossiers de consultation (DCE), comparaison d'offres DPGF, et frappe express de vos comptes-rendus de chantier.
-        </div>
-        <div class="diff-vs">
-          <div class="diff-vs-title">Ce que ça change pour vous</div>
-          Vos comptes-rendus de chantier sont envoyés sous 24h et vos analyses d'offres sont prêtes en un temps record pour vos arbitrages.
-        </div>
-      </div>
-
-      <!-- Carte 4 -->
-      <div class="diff-card reveal delay-4">
-        <div class="diff-card-top">
-          <div class="diff-icon">💎</div>
-          <span class="diff-badge">Économie & Rigueur</span>
-        </div>
-        <div class="diff-title">Vous payez du pilotage métier, pas du temps perdu</div>
-        <div class="diff-text">
-          Les tâches répétitives étant automatisées, tout mon temps est consacré à ce qui exige une vraie valeur ajoutée BTP : le contrôle de conformité, la vérification des montants, la relation avec les entreprises et le respect du CCAG.
-        </div>
-        <div class="diff-vs">
-          <div class="diff-vs-title">Ce que ça change pour vous</div>
-          Vous bénéficiez de la puissance de traitement d'un service administratif complet pour le coût maîtrisé d'une assistante indépendante.
-        </div>
-      </div>
-
     </div>
 
     <!-- Conclusion box -->
-    <div class="diff-conclusion reveal delay-5">
+    <div class="diff-conclusion reveal delay-2">
       <div class="diff-conclusion-quote">
-        « L'automatisation et l'IA ne remplacent pas l'expertise du chantier : elles éliminent les erreurs et vous garantissent un suivi d'une précision absolue. »
+        « Vous bénéficiez d'une assistante rigoureuse qui connaît la réalité de vos chantiers, avec la capacité d'automatiser vos tâches répétitives si vous le décidez. »
       </div>
       <div class="diff-conclusion-sub">
-        Vous gardez les commandes et le discernement sur le terrain. Assistansia sécurise toute la mécanique administrative avec rigueur et modernité.
+        Une collaboration souple, pragmatique et sur-mesure, alignée sur vos priorités.
       </div>
     </div>
 
@@ -988,7 +951,7 @@
 <section id="garantie" class="full">
   <div class="garantie-wrapper">
     <div class="garantie-inner">
-      <div class="section-tag" style="justify-content:center;">🎯 La promesse</div>
+      <div class="section-tag" style="justify-content:center;">🎯 Notre promesse</div>
       <h2 style="margin-top:12px;">Zéro facture oubliée.<br/><em>Zéro dossier bloqué.</em></h2>
       <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-top:16px;margin-bottom:32px;">
         Sécuriser la trésorerie et la fiabilité administrative de vos opérations de chantier — sans jamais remplacer votre jugement, seulement le temps que vous perdez à tout suivre manuellement.
