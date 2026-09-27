@@ -332,20 +332,121 @@
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
+    /* ══════ SCROLL REVEAL ══════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* ══════ BURGER MENU ══════ */
+    .burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 201;
+    }
+    .burger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 199;
+      background: rgba(8,12,24,0.98); backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      font-size: 24px; font-weight: 700; color: var(--text); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange-light); }
+    .mobile-menu .menu-cta {
+      background: var(--orange); color: white; padding: 14px 32px;
+      border-radius: 100px; font-size: 16px; font-weight: 700;
+      box-shadow: 0 12px 32px rgba(249,115,22,0.4);
+    }
+
+    /* Nav link active */
+    .topbar-link.active { color: var(--orange-light); }
+
+    /* ══════ RESPONSIVE MOBILE ══════ */
+    @media (max-width: 900px) {
       .topbar { padding: 12px 20px; }
-      .topbar-nav { display: none; }
+      .topbar-nav, .topbar-cta { display: none; }
+      .burger { display: flex; }
+
       section { padding: 80px 20px 60px; }
-      #problem, #profile { flex-direction: column; gap: 40px; }
-      .problem-right, .profile-card { flex: none; width: 100%; }
-      .infras-grid, .cibles-grid { grid-template-columns: 1fr; }
-      .infras-grid { padding: 0 20px; }
-      .infra-header .section-inner { padding: 0 20px; }
-      .hero-stats { gap: 24px; }
-      .infras-wrapper, .garantie-wrapper { padding: 80px 20px 60px; }
+
+      /* Hero */
+      h1 { font-size: clamp(32px, 8vw, 52px); }
+      .hero-sub { font-size: 15px; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .stat-val { font-size: 28px; }
+
+      /* Problem */
+      #problem { flex-direction: column; gap: 32px; }
+      .problem-right { flex: none; width: 100%; }
+
+      /* Infras */
+      .infras-wrapper { padding: 60px 0; }
+      .infras-grid { grid-template-columns: 1fr; padding: 0 20px; gap: 16px; }
       .section-inner { padding: 0 20px; }
-      footer { flex-direction: column; gap: 12px; text-align: center; }
+      .infra-header { padding: 0 20px; }
+
+      /* Cibles */
+      .cibles-grid { grid-template-columns: 1fr; }
+
+      /* Profile */
+      #profile { flex-direction: column; gap: 32px; }
+      .profile-card { flex: none; width: 100%; }
+
+      /* Garantie */
+      .garantie-wrapper { padding: 60px 20px; }
+      .offer-cards { flex-direction: column; }
+      .offer-card { min-width: unset; }
+
+      /* Footer */
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+
+      h2 { font-size: clamp(22px, 6vw, 36px); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-badge { font-size: 10px; padding: 5px 14px; }
+      .hero-stats { gap: 16px; }
+      .stat-val { font-size: 24px; }
+      .infra-card { padding: 20px; }
+      .cible-card { padding: 18px 20px; }
+      .profile-card { padding: 24px; }
     }
   </style>
 </head>
@@ -367,7 +468,19 @@
     <a class="topbar-link" href="#garantie">Offre</a>
   </div>
   <a class="topbar-cta" href="https://calendly.com/sonia-monassistant-ia/appel-de-decouverte" target="_blank" rel="noopener noreferrer">📅 Prendre rendez-vous</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#infras" class="menu-link">Missions</a>
+  <a href="#cibles" class="menu-link">Cibles</a>
+  <a href="#profile" class="menu-link">Profil</a>
+  <a href="#garantie" class="menu-link">Offre</a>
+  <a href="https://calendly.com/sonia-monassistant-ia/appel-de-decouverte" target="_blank" class="menu-cta">📅 Prendre rendez-vous</a>
+</div>
 
 <!-- ══════ HERO ══════ -->
 <section id="hero">
@@ -407,32 +520,32 @@
 
 <!-- ══════ PROBLÈME ══════ -->
 <section id="problem">
-  <div class="problem-left">
+  <div class="problem-left reveal-left">
     <div class="section-tag">📋 Le constat</div>
     <h2>L'administratif technique vous vole<br/><em>votre temps de chantier</em></h2>
     <p style="color:var(--muted);font-size:14px;line-height:1.7;">
       En tant que directeur de travaux, maître d'œuvre ou dirigeant de PME BTP, votre valeur est sur le terrain. Pas derrière un écran à relancer des sous-traitants ou vérifier des situations de travaux.
     </p>
     <div class="pain-list">
-      <div class="pain-item">
+      <div class="pain-item reveal delay-1">
         <div class="pain-icon">💰</div>
         <div class="pain-text"><strong>Trésorerie fragilisée</strong>Des certificats de paiement non traités à temps, des relances d'impayés oubliées — votre cash-flow en pâtit directement.</div>
       </div>
-      <div class="pain-item">
+      <div class="pain-item reveal delay-2">
         <div class="pain-icon">📋</div>
         <div class="pain-text"><strong>OS et contrats en retard</strong>La rédaction, le suivi et l'archivage des Ordres de Service prennent des heures chaque semaine sans valeur ajoutée.</div>
       </div>
-      <div class="pain-item">
+      <div class="pain-item reveal delay-3">
         <div class="pain-icon">📞</div>
         <div class="pain-text"><strong>Sous-traitants non conformes</strong>Agréments manquants, NDA incomplets, pièces non relancées — une bombe administrative à retardement.</div>
       </div>
-      <div class="pain-item">
+      <div class="pain-item reveal delay-4">
         <div class="pain-icon">📁</div>
         <div class="pain-text"><strong>Appels d'offres chronophages</strong>Analyser un DCE, comparer les offres DPGF, relancer les entreprises consultées — des journées entières englouties.</div>
       </div>
     </div>
   </div>
-  <div class="problem-right">
+  <div class="problem-right reveal-right">
     <div class="quote-block">
       <div class="quote-text">
         "Entre le suivi des OS, la relance des sous-traitants pour leurs agréments, l'analyse des offres d'entreprises et les situations de travaux — l'administratif prend souvent plus de temps que prévu.<br/><br/>
@@ -464,7 +577,7 @@
     <div class="infras-grid">
 
       <!-- Financier -->
-      <div class="infra-card orange">
+      <div class="infra-card orange reveal delay-1">
         <div class="infra-icon orange">💰</div>
         <div class="infra-label orange">Infrastructure 01</div>
         <div class="infra-title">Suivi financier & trésorerie</div>
@@ -485,7 +598,7 @@
       </div>
 
       <!-- Contractuel -->
-      <div class="infra-card blue">
+      <div class="infra-card blue reveal delay-2">
         <div class="infra-icon blue">📋</div>
         <div class="infra-label blue">Infrastructure 02</div>
         <div class="infra-title">Contractuel & documentaire</div>
@@ -506,7 +619,7 @@
       </div>
 
       <!-- Appels d'offres -->
-      <div class="infra-card green">
+      <div class="infra-card green reveal delay-3">
         <div class="infra-icon green">📊</div>
         <div class="infra-label green">Infrastructure 03</div>
         <div class="infra-title">Analyse des offres & DCE</div>
@@ -527,7 +640,7 @@
       </div>
 
       <!-- Urbanisme -->
-      <div class="infra-card gold">
+      <div class="infra-card gold reveal delay-4">
         <div class="infra-icon gold">🏛️</div>
         <div class="infra-label gold">Infrastructure 04</div>
         <div class="infra-title">Urbanisme & autorisations</div>
@@ -560,7 +673,7 @@
   </p>
   <div class="cibles-grid">
 
-    <div class="cible-card">
+    <div class="cible-card reveal delay-1">
       <div class="cible-header">
         <div class="cible-num">1</div>
         <div class="cible-name">Artisans & micro-entrepreneurs BTP</div>
@@ -573,7 +686,7 @@
       </div>
     </div>
 
-    <div class="cible-card">
+    <div class="cible-card reveal delay-2">
       <div class="cible-header">
         <div class="cible-num">2</div>
         <div class="cible-name">PME du bâtiment (3 à 15 salariés)</div>
@@ -586,7 +699,7 @@
       </div>
     </div>
 
-    <div class="cible-card">
+    <div class="cible-card reveal delay-3">
       <div class="cible-header">
         <div class="cible-num">3</div>
         <div class="cible-name">Maîtres d'œuvre, architectes & SPS</div>
@@ -599,7 +712,7 @@
       </div>
     </div>
 
-    <div class="cible-card">
+    <div class="cible-card reveal delay-4">
       <div class="cible-header">
         <div class="cible-num">4</div>
         <div class="cible-name">Apporteurs d'affaires & courtiers en travaux</div>
@@ -726,9 +839,9 @@
 </footer>
 
 <script>
-  // Counter animation
+  // ── Counter animation
   const counters = document.querySelectorAll('[data-target]');
-  const io = new IntersectionObserver(entries => {
+  const cio = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const el = e.target;
@@ -740,10 +853,52 @@
         el.textContent = Math.floor(cur) + suffix;
         if (cur >= target) clearInterval(t);
       }, 30);
-      io.unobserve(el);
+      cio.unobserve(el);
     });
   }, { threshold: 0.5 });
-  counters.forEach(c => io.observe(c));
+  counters.forEach(c => cio.observe(c));
+
+  // ── Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const rio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        rio.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => rio.observe(r));
+
+  // ── Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.topbar-link');
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.topbar-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navIO.observe(s));
+
+  // ── Burger menu
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(l => {
+    l.addEventListener('click', () => {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 </script>
 </body>
 </html>
