@@ -227,9 +227,11 @@
     .auto-badge.green { background: var(--green-dim); color: #34d399; }
     .auto-badge.gold { background: var(--gold-dim); color: var(--gold); }
 
-    /* ══════ CIBLES ══════ */
+    /* ══════ POUR QUI (CIBLES) ══════ */
     #cibles { padding-bottom: 0; }
-    .cibles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+    .cibles-layout { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; }
+    .cibles-layout .profile-card { position: sticky; top: 100px; }
+    .cibles-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
     .cible-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
       padding: 24px 26px; transition: all 0.3s;
@@ -277,7 +279,7 @@
       font-size: 10px; font-weight: 700; color: var(--muted);
     }
     .profile-right { flex: 1; }
-    .xp-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .xp-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin-top: 20px; }
     .xp-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
     .xp-check { color: var(--orange); font-size: 16px; flex-shrink: 0; }
 
@@ -532,12 +534,15 @@
       .section-inner { padding: 0 20px; }
       .infra-header { padding: 0 20px; }
 
-      /* Cibles */
+      /* Pour qui */
       .cibles-grid { grid-template-columns: 1fr; }
+      .cibles-layout { grid-template-columns: 1fr; gap: 32px; }
+      .cibles-layout .profile-card { position: static; }
 
       /* Profile */
       #profile { flex-direction: column; gap: 32px; }
       .profile-card { flex: none; width: 100%; }
+      .xp-list { grid-template-columns: 1fr; }
 
       /* Différenciateur */
       .diff-wrapper { padding: 36px 20px; }
@@ -579,7 +584,7 @@
   </a>
   <div class="topbar-nav">
     <a class="topbar-link" href="#infras">Missions</a>
-    <a class="topbar-link" href="#cibles">Cibles</a>
+    <a class="topbar-link" href="#cibles">Pour qui ?</a>
     <a class="topbar-link" href="#profile">Profil</a>
     <a class="topbar-link" href="#differentiation">Notre différence</a>
     <a class="topbar-link" href="#garantie">Offre</a>
@@ -593,7 +598,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#infras" class="menu-link">Missions</a>
-  <a href="#cibles" class="menu-link">Cibles</a>
+  <a href="#cibles" class="menu-link">Pour qui ?</a>
   <a href="#profile" class="menu-link">Profil</a>
   <a href="#differentiation" class="menu-link">Notre différence</a>
   <a href="#garantie" class="menu-link">Offre</a>
@@ -782,9 +787,57 @@
   </div>
 </section>
 
-<!-- ══════ CIBLES ══════ -->
+<!-- ══════ POUR QUI (CIBLES) ══════ -->
 <section id="cibles">
-  <div class="section-tag">🎯 Nos cibles</div>
+ <div class="cibles-layout">
+  <!-- Carte de présentation Sonia (à gauche, reste visible au défilement) -->
+  <div class="profile-card reveal-left">
+    <div class="profile-avatar">
+      <img src="sonia.png" alt="Sonia - Assistante BTP" />
+    </div>
+    <div class="profile-name">Sonia</div>
+    <div class="profile-role">Assistante virtuelle Administrative et Financière de projets</div>
+    <hr class="profile-divider" />
+    <div class="profile-stat">
+      <span class="profile-stat-label">Expérience BTP</span>
+      <span class="profile-stat-val">3 ans terrain</span>
+    </div>
+    <div class="profile-stat" style="align-items:flex-start;">
+      <span class="profile-stat-label" style="flex-shrink:0;">Spécialité</span>
+      <span class="profile-stat-val" style="text-align:right;max-width:185px;line-height:1.35;font-size:12px;">Assistante virtuelle Administrative et Financière de projets</span>
+    </div>
+    <div class="profile-stat">
+      <span class="profile-stat-label">Notre différence</span>
+      <span class="profile-stat-val">Automatisation &amp; IA (option)</span>
+    </div>
+    <div class="profile-stat">
+      <span class="profile-stat-label">Format</span>
+      <span class="profile-stat-val">100% à distance</span>
+    </div>
+    <div class="profile-stat">
+      <span class="profile-stat-label">Prise en main</span>
+      <span class="profile-stat-val">Opérationnelle</span>
+    </div>
+    <div class="profile-stat">
+      <span class="profile-stat-label">Engagement</span>
+      <span class="profile-stat-val">1er mois sans risque</span>
+    </div>
+    <hr class="profile-divider" />
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Compétences BTP &amp; Outils</div>
+    <div class="tools-row">
+      <span class="tool-chip">CCAG / Marchés</span>
+      <span class="tool-chip">Situations travaux</span>
+      <span class="tool-chip">DPGF / DCE</span>
+      <span class="tool-chip">Suivi sous-traitants</span>
+      <span class="tool-chip">Make</span>
+      <span class="tool-chip">n8n</span>
+      <span class="tool-chip">Airtable</span>
+      <span class="tool-chip">Notion</span>
+    </div>
+  </div>
+
+  <div class="cibles-right">
+  <div class="section-tag">🎯 Pour qui ?</div>
   <h2>Je connais votre métier,<br/><em>vos contraintes aussi.</em></h2>
   <p style="color:var(--muted);font-size:14px;max-width:560px;line-height:1.7;">
     Trois profils précis, pour lesquels chaque heure gagnée sur l'administratif se transforme directement en chiffre d'affaires ou en sérénité retrouvée.
@@ -831,54 +884,12 @@
     </div>
 
   </div>
+  </div>
+ </div>
 </section>
 
 <!-- ══════ PROFIL ══════ -->
 <section id="profile">
-  <div class="profile-card reveal-left">
-    <div class="profile-avatar">
-      <img src="sonia.png" alt="Sonia - Assistante BTP" />
-    </div>
-    <div class="profile-name">Sonia</div>
-    <div class="profile-role">Assistante virtuelle Administrative et Financière de projets</div>
-    <hr class="profile-divider" />
-    <div class="profile-stat">
-      <span class="profile-stat-label">Expérience BTP</span>
-      <span class="profile-stat-val">3 ans terrain</span>
-    </div>
-    <div class="profile-stat" style="align-items:flex-start;">
-      <span class="profile-stat-label" style="flex-shrink:0;">Spécialité</span>
-      <span class="profile-stat-val" style="text-align:right;max-width:185px;line-height:1.35;font-size:12px;">Assistante virtuelle Administrative et Financière de projets</span>
-    </div>
-    <div class="profile-stat">
-      <span class="profile-stat-label">Notre différence</span>
-      <span class="profile-stat-val">Automatisation & IA (option)</span>
-    </div>
-    <div class="profile-stat">
-      <span class="profile-stat-label">Format</span>
-      <span class="profile-stat-val">100% à distance</span>
-    </div>
-    <div class="profile-stat">
-      <span class="profile-stat-label">Prise en main</span>
-      <span class="profile-stat-val">Opérationnelle</span>
-    </div>
-    <div class="profile-stat">
-      <span class="profile-stat-label">Engagement</span>
-      <span class="profile-stat-val">1er mois sans risque</span>
-    </div>
-    <hr class="profile-divider" />
-    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Compétences BTP & Outils</div>
-    <div class="tools-row">
-      <span class="tool-chip">CCAG / Marchés</span>
-      <span class="tool-chip">Situations travaux</span>
-      <span class="tool-chip">DPGF / DCE</span>
-      <span class="tool-chip">Suivi sous-traitants</span>
-      <span class="tool-chip">Make</span>
-      <span class="tool-chip">n8n</span>
-      <span class="tool-chip">Airtable</span>
-      <span class="tool-chip">Notion</span>
-    </div>
-  </div>
   <div class="profile-right reveal-right">
     <div class="section-tag">👤 Qui suis-je</div>
     <h2>Je ne découvre pas<br/>votre métier, <em>je le connais.</em></h2>
